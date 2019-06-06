@@ -19,10 +19,12 @@ class DomainToIp
     {
         $dns = dns_get_record($domain);
         if (isset($dns[0])) {
-            if ($dns[0]['type'] == 'CNAME') {
+            if (isset($dns[0]['type']) && $dns[0]['type'] == 'CNAME') {
                 return self::find($dns[0]['target']);
             } else {
-                return $dns[0]['ip'];
+                if(isset($dns[0]['ip'])) {
+                    return $dns[0]['ip'];
+                }
             }
         }
         /**

@@ -1,0 +1,25 @@
+{
+    "name": "giuga/domain-to-ip",
+    "description": "Detect a domain name ip address",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^8.2@dev"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gabriel Iuga",
+            "email": "g@iuga.dev"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Giuga\\": "src/"
+        }
+    }
+}

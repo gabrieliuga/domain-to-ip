@@ -17,15 +17,19 @@ class DomainToIp
 
     private static function getIpForDomain($domain)
     {
-        $dns = dns_get_record($domain);
-        if (isset($dns[0])) {
-            if (isset($dns[0]['type']) && $dns[0]['type'] == 'CNAME') {
-                return self::find($dns[0]['target']);
-            } else {
-                if(isset($dns[0]['ip'])) {
-                    return $dns[0]['ip'];
+        try {
+            $dns = dns_get_record($domain);
+            if (isset($dns[0])) {
+                if (isset($dns[0]['type']) && $dns[0]['type'] == 'CNAME') {
+                    return self::find($dns[0]['target']);
+                } else {
+                    if (isset($dns[0]['ip'])) {
+                        return $dns[0]['ip'];
+                    }
                 }
             }
+        } catch (\Exception $e){
+
         }
         /**
          * Woops dns fetch failed let's try something else then
